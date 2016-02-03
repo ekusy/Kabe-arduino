@@ -1,12 +1,11 @@
-void init() {
-  pinMode(jackUp, OUTPUT);
-  pinMode(jackDown, OUTPUT);
+void initPin() {
+  pinMode(jackUpPin, OUTPUT);
+  pinMode(jackDownPin, OUTPUT);
 
-  pinMode(winchUp, OUTPUT);
-  pinMode(winchDown, OUTPUT);
+  pinMode(winchUpPin, OUTPUT);
+  pinMode(winchDownPin, OUTPUT);
 
-  pinMode(drillForword, OUTPUT);
-  pinMode(drillReverse, OUTPUT);
+  pinMode(drillPin, OUTPUT);
 
   for (int i = 0; i < 2; i++)
     pinMode(motorPin[i], INPUT);

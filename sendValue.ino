@@ -1,21 +1,9 @@
-//ジャッキで使用するピン
-const int jackUp = 22, jackDown = 24;
-
-//ウィンチで使用するピン
-const int winchUp = 26, winchDown = 28;
-
-//落下機構のドリルで使用するピン
-const int drillForword = 32, drillReverse = 34;
-
-//モータの読み取りに使用するピン
-const int motorPin[2] = {A0, A1};
 
 //モータの値の変換に使う数値
 //baseが変換前、mapが変換後の値の範囲
 const int baseMin = 0, baseMax = 200, mapMin = 0, mapMax = 100;
 
-//圧力センサの読み取りに使用するピン
-const int pressPin[4] = {A4, A5, A6, A7};
+
 
 //圧力センサの閾値
 const int pressThreshold[4] = {660, 520, 500, 800};
@@ -23,7 +11,9 @@ const int pressThreshold[4] = {660, 520, 500, 800};
 
 
 //----------ここから関数-----------------------------
-void sendvalue() {
+
+
+void sendValue() {
   int motorSensorValue[2] = { -1, -1};
   int pressSensorValue[4] = { -1, -1, -1, -1};
   int sendValue[6] = { -1, -1, -1, -1, -1, -1};
@@ -46,8 +36,8 @@ void sendvalue() {
   for (int k = 0; k < 6; k++) {
     if (k != 0)
       s.concat(",");
-    s.concat(String(signal[k]));
-    //Serial.print(signal[k]);
+    s.concat(String(sendValue[k]));
+    //Serial.print(sendValue[k]);
     //Serial.print(",");
   }
   Serial.println(s);
