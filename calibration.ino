@@ -18,13 +18,13 @@ void calibrationMode(int _mode) {
   }
 
   if (_mode = 1) {
-    Serial.print("右手モータ：");
+    Serial.print("right raw:");
     Serial.print(motorSensorValue[0]);
-    Serial.print("右手送信値：");
+    Serial.print(" right send:");
     Serial.print(sendValue[0]);
-    Serial.print("左手モータ：");
+    Serial.print(" left raw:");
     Serial.print(motorSensorValue[1]);
-    Serial.print("左手送信値：");
+    Serial.print(" left send:");
     Serial.print(sendValue[1]);
     Serial.println(" ");
   }

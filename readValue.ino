@@ -1,12 +1,21 @@
 
-
+bool test = false;
+String buff = "";
 //シリアル通信受信部分
-void readValue(){
+void readValue() {
   if (Serial.available() > 0) { //受信データがあれば
     char  c = Serial.read();  //バッファからデータ受信
+    buff.concat(String(c));
     Serial.flush(); //バッファ消去
     judge(c); //動作判定
   }
+  //Serial.println(buff);
+  /*
+  if (test == false)
+      Serial.println("false");
+    else
+      Serial.println("true");
+      */
 }
 /************ドリル判定関数************/
 void judge(char c) {
@@ -34,17 +43,21 @@ void judge(char c) {
     delay(10);
     digitalWrite(jackUpPin, HIGH);
     time_old[JACK] = millis();
+    //Serial.println("JACK_UP");
+    test = true;
   }
   else if (c == '5') {  //ジャッキ下げ（頭上げ）
     digitalWrite(jackUpPin, LOW);
     delay(10);
     digitalWrite(jackDownPin, HIGH);
     time_old[JACK] = millis();
+    //Serial.println("JACK_DOWN");
   }
   else if (c == '6') {  //ジャッキ停止
     digitalWrite(jackUpPin, LOW);
     digitalWrite(jackDownPin, LOW);
     delay(10);
+    //Serial.println("JACK_STOP");
     time_old[JACK] = -1;
   }
   else if (c == '7') {  //ウィンチ出し（ハンモック下げ）

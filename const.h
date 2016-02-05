@@ -1,6 +1,6 @@
 //-----------使用するピン関連---------------------
 //ジャッキで使用するピン
-const int jackUpPin = 1, jackDownPin = 3;
+const int jackUpPin = 2, jackDownPin = 3;
 
 //ウィンチで使用するピン
 const int winchUpPin = 5, winchDownPin = 7;

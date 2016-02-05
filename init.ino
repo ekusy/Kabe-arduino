@@ -7,6 +7,12 @@ void initPin() {
 
   pinMode(drillPin, OUTPUT);
 
+  digitalWrite(drillPin, LOW);
+  digitalWrite(jackUpPin, LOW);
+  digitalWrite(jackDownPin, LOW);
+  digitalWrite(winchUpPin, LOW);
+  digitalWrite(winchDownPin, LOW);
+  
   for (int i = 0; i < 2; i++)
     pinMode(motorPin[i], INPUT);
 
