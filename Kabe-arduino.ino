@@ -3,10 +3,12 @@
   1でモータセンサ、2で圧力センサ
   確認後は0に戻して書き込み直すように
 */
+#include "const.h"
 int testMode = 0;
 
 void setup() {
   // put your setup code here, to run once:
+  Serial.begin(9600);
   initPin();
 }
 

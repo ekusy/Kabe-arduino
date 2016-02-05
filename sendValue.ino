@@ -1,12 +1,5 @@
 
-//モータの値の変換に使う数値
-//baseが変換前、mapが変換後の値の範囲
-const int baseMin = 0, baseMax = 200, mapMin = 0, mapMax = 100;
 
-
-
-//圧力センサの閾値
-const int pressThreshold[4] = {660, 520, 500, 800};
 //----------ここまで定数宣言-------------------------
 
 
@@ -19,7 +12,7 @@ void sendValue() {
   int sendValue[6] = { -1, -1, -1, -1, -1, -1};
   for (int i = 0; i < 2; i++) {
     motorSensorValue[i] = analogRead(motorPin[i]);
-    sendValue[i] = motorSensorValue[i];
+    sendValue[i] = map(motorSensorValue[i],baseMin,baseMax,mapMax,mapMin);
   }
 
   for (int i = 0; i < 4; i++) {
