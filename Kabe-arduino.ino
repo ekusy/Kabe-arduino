@@ -1,10 +1,9 @@
 /*
-  1または2にするとシリアルモニターでセンサーの値を確認できるモードになる
-  1でモータセンサ、2で圧力センサ、3で現在の各ピンの様子
-  確認後は0に戻して書き込み直すように
+  testModeを1にするとシリアルモニターでセンサーの値を確認できるモードになる
+  終わったら0に戻すように
 */
-#include "const.h"
-int testMode = 1;
+//#include "const.h"
+int testMode = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -21,7 +20,9 @@ void loop() {
     sendValue();
     readValue();
     safeFunction();
+    //Serial.println("test");
   }
+  delay(16);
 }
 
 

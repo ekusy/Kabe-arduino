@@ -1,42 +1,37 @@
+String str[] = {"A0=", "A1=", "A2=", "A3=", "A4=", "A5="};
 void calibrationMode(int _mode) {
   int motorSensorValue[2] = { -1, -1};
   int pressSensorValue[4] = { -1, -1, -1, -1};
-  int sendValue[6] = { -1, -1, -1, -1, -1, -1};
+  int values[6] = { -1, -1, -1, -1, -1, -1};
   for (int i = 0; i < 2; i++) {
     motorSensorValue[i] = analogRead(motorPin[i]);
-    sendValue[i] = map(motorSensorValue[i], baseMin, baseMax, mapMax, mapMin);
+    values[i] = motorSensorValue[i];
   }
 
   for (int i = 0; i < 4; i++) {
     pressSensorValue[i] = analogRead(pressPin[i]);
-    if (pressSensorValue[i] >= pressThreshold[i]) {
-      sendValue[i + 2] = 1;
-    }
-    else {
-      sendValue[i + 2] = 0;
-    }
+    values[i + 2] = pressSensorValue[i];
   }
-
-  if (_mode = 1) {
-    Serial.print("right raw:");
-    Serial.print(motorSensorValue[0]);
-    Serial.print(" right send:");
-    Serial.print(sendValue[0]);
-    Serial.print(" left raw:");
-    Serial.print(motorSensorValue[1]);
-    Serial.print(" left send:");
-    Serial.print(sendValue[1]);
-    Serial.println(" ");
-  }
-  else if (_mode = 2) {
-    String str[8] = {"右手圧力：", "右手送信値", "左手圧力：", "左手送信値", "右足圧力：", "右足送信値", "左足圧力：", "左足送信値"};
-    for (int i = 0; i < 4; i++) {
-      Serial.print(str[i * 2]);
-      Serial.print(pressSensorValue[i]);
-      Serial.print(str[i * 2 + 1]);
-      Serial.print(sendValue[i + 2]);
+  if (_mode == 1) {
+    String s = "";
+    for (int i = 0; i < 6; i++) {
+      if (i != 0)
+        s.concat(",");
+      s.concat(str[i]);
+      s.concat(String(values[i]));
     }
-    Serial.println(" ");
+    Serial.println(s);
+  }
+  if (_mode == 2) {
+    for (int i = 1; i < 2; i++) {
+      values[i] =  map(motorSensorValue[i], baseMin[i], baseMax[i], mapMin, mapMax);
+      Serial.print(str[i]);
+      Serial.print(motorSensorValue[i]);
+      Serial.print(" map=");
+      Serial.print(values[i]);
+      Serial.print(" : ");
+    }
+    Serial.println("");
   }
 }
 

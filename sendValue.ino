@@ -9,10 +9,10 @@
 void sendValue() {
   int motorSensorValue[2] = { -1, -1};
   int pressSensorValue[4] = { -1, -1, -1, -1};
-  int sendValue[6] = { -1, -1, -1, -1, -1, -1};
+  int sendValue[6] = { 0,0,0,0,0,0};
   for (int i = 0; i < 2; i++) {
     motorSensorValue[i] = analogRead(motorPin[i]);
-    sendValue[i] = map(motorSensorValue[i],baseMin,baseMax,mapMax,mapMin);
+    sendValue[i] = map(motorSensorValue[i],baseMin[i],baseMax[i],mapMin,mapMax);
   }
 
   for (int i = 0; i < 4; i++) {
@@ -35,6 +35,6 @@ void sendValue() {
   }
   Serial.println(s);
   //Serial.println(analogRead(A4));
-  delay(50);
+  
 }
 
